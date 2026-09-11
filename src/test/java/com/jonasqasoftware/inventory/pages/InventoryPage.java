@@ -28,10 +28,19 @@ public class InventoryPage {
   }
 
   public void searchBySku(String term) {
+    // Captura o root da página atual antes do submit: a busca já acontece a
+    // partir de /inventory, então aguardar apenas a presença do marcador
+    // depois seria self-satisfying (ele já é verdadeiro antes do submit).
+    // Esperar a página antiga ficar stale detecta de forma determinística
+    // que o GET /inventory?search=... foi concluído.
+    var oldPage = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-testid='inventory-page']")));
+
     var searchInput = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[data-testid='inventory-search']")));
     searchInput.clear();
     searchInput.sendKeys(term);
     wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[data-testid='inventory-search-submit']"))).click();
+
+    wait.until(ExpectedConditions.stalenessOf(oldPage));
     waitForLoad();
   }
 
