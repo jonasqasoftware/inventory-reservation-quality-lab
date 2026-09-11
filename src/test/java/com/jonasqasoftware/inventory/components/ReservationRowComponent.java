@@ -59,8 +59,17 @@ public class ReservationRowComponent {
   }
 
   public void cancel() {
+    // Mesmo raciocínio de InventoryRowComponent.reserve(): cancelar já
+    // acontece a partir de /reservations, então aguardar apenas a presença
+    // desse marcador depois do clique seria self-satisfying (a condição já
+    // era verdadeira antes da navegação). Esperar a página antiga ficar
+    // stale detecta de forma determinística o POST → 303 → reload.
+    var oldPage = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-testid='reservations-page']")));
+
     var cancelButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(cancelButtonSelector())));
     cancelButton.click();
+
+    wait.until(ExpectedConditions.stalenessOf(oldPage));
     wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-testid='reservations-page']")));
   }
 

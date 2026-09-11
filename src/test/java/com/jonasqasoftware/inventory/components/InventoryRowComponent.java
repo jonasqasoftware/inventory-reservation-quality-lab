@@ -53,9 +53,17 @@ public class InventoryRowComponent {
     quantityInput.clear();
     quantityInput.sendKeys(String.valueOf(quantity));
 
+    // Captura o root da página atual antes do clique: como reservar já
+    // acontece a partir de /inventory, aguardar apenas a presença desse
+    // mesmo marcador depois seria uma condição self-satisfying (ela já é
+    // verdadeira antes da navegação). Esperar a página antiga ficar stale
+    // detecta de forma determinística que o POST → 303 → reload aconteceu.
+    var oldPage = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-testid='inventory-page']")));
+
     var reserveButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(reserveButtonSelector())));
     reserveButton.click();
 
+    wait.until(ExpectedConditions.stalenessOf(oldPage));
     wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-testid='inventory-page']")));
   }
 
