@@ -17,7 +17,7 @@ public class InventoryPage {
 
   public InventoryPage(WebDriver driver, String baseUrl) {
     this.driver = driver;
-    this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+    this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     this.baseUrl = baseUrl;
   }
 

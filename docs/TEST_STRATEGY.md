@@ -110,7 +110,7 @@ localização/interação em cada teste.
 
 ## Sincronização
 
-Todo `WebDriverWait` usa um timeout explícito (5s) e `ExpectedConditions`
+Todo `WebDriverWait` usa um timeout explícito (15s) e `ExpectedConditions`
 orientadas ao estado esperado: elemento visível, clicável ou presente após
 uma navegação. O implicit wait é explicitamente `Duration.ZERO`
 (`BrowserFactory`) — não há espera implícita positiva escondendo problemas
