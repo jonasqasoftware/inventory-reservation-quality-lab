@@ -1,0 +1,98 @@
+:root {
+  --color-ink: #1a1a1a;
+  --color-paper: #ffffff;
+  --color-border: #d8d8d8;
+  --color-accent: #1f6f50;
+  --color-alert-bg: #fff4e5;
+  --color-alert-fg: #7a4a00;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--color-ink);
+  background: #f4f4f2;
+}
+
+header {
+  padding: 1.25rem 1rem;
+  background: var(--color-paper);
+  border-bottom: 1px solid var(--color-border);
+}
+
+header h1 {
+  margin: 0 0 0.5rem;
+  font-size: 1.3rem;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+nav a[aria-current="page"] {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.6rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+form {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+input[type="number"],
+input[type="text"] {
+  width: 5rem;
+  padding: 0.3rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+}
+
+button {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--color-ink);
+  border-radius: 4px;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  cursor: pointer;
+}
+
+[role="alert"] {
+  padding: 0.75rem;
+  border-radius: 4px;
+  background: var(--color-alert-bg);
+  color: var(--color-alert-fg);
+}
